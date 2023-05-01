@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Generador de Tarjeta de Crédito Dinámico</title>
+    <!--Apartado del head donde se importan liberias desde la nube par apoder utilizarla en el proyecto, entre ellas están
+    estilos de fuentes de google, alerts personalizados por medio de la libreria sweet alert, y fontawsome para el empleo
+    de iconos-->
+    <link rel="icon" href="./img/iconoTarjeta.png">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/56623e3033.js" crossorigin="anonymous"></script>
+    <!--Enlace del estilos css de manera externa-->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!--Sección del encabezado de la página-->
+    <div class="seccion-menu">
+        <a href="#">Inicio</a>
+        <a href="#">Nosotros</a>
+        <a href="#">Servicios</a>
+        <a href="#" class="predeterminado">Generador</a>
+        <a href="#">Contáctanos</a>
+    </div>
+    
+    <!--Contenedor de los titulos de la página web-->
+    <div class="titulos">
+        <h1>Generador de Tarjetas de Crédito</h1>
+        <h2>Información del Pago</h2>
+    </div>
+    
+    <!--Este sera el div que funcionará como contenedor padre para todo el contenido de la página web,
+    este servirá para contener nuestra tarjeta de crédito y fomulario-->
+    <div class="contenedor">
+        <!--Sección de nuestra tarjeta de credito, la cual la vinculamos con una clase css para darle sus estilos
+        y un id para vincularala con nuestro codigo JavaScript-->
+        <section class="tarjeta sombrio" id="tarjeta" >
+            <!--Código para la parte delantera de la tarjeta-->
+            <div class="delantera">
+                <!--Contenedor donde va a permanecer la imagen de VISA de nuestra tarjeta-->
+                <div class="logo-marca">
+                    <img src="./img/visa.png" alt="Logo de tarjeta de crédito">
+                </div>
+                <!--etiqueta para poner la imagen del chip de nuestra tarjeta-->
+                <img src="./img/chip-tarjeta.png" class="chip" alt="Chip de la tarjeta">
+                
+                <!--Contenedor padre con la clase "datos" para poder agrupar todos los datos que estarán dentro de la
+                tarjeta de crédito-->
+                <div class="datos">
+                    <!--Grupo donde va a estar el número de la tarjeta, este grupo va abarcar todo el 
+                    espacio horizontal de la tarjeta-->
+                    <div class="grupo" id="numero">
+                        <p class="label">Número Tarjeta</p>
+                        <p class="numero">#### #### #### ####</p>
+                    </div>
+                    <!--Contenedor donde van a estar alamcenados dos grupos, lo del lado derecho (nombre de la persona) y
+                    los del lado izquierdo que es la fecha de experiación, y por eso se utiliza la clase flexbox, para tratar
+                    la manera luego con css que los elementos del contenedor sean flexibles para colocarlos de la manera correspondiente.-->
+                    <div class="flexbox">
+                        <!--Grupo que va del lado izquierdo-->
+                        <div class="grupo" id="nombre">
+                            <p class="label">Nombre Tarjeta</p>
+                            <p class="nombre">-- --</p>
+                        </div>
+
+                        <!--Grupo que va del lado derecho-->
+                        <div class="grupo" id="expiracion">
+                            <p class="label">Expiración</p>
+                            <!--Colocamos span por separado para dividir el mes con el año, para que nuestro codigo JavaScript
+                            nos permita o solo cambiar el mes o solo cambiar el año-->
+                            <p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Código para la parte trasera de la tarjeta-->
+            <div class="trasera">
+                <div class="barra-magnetica"></div>
+                <!--Contenedor para los datos de la parte trasera de la tarjeta-->
+                <div class="datos">
+                    <div class="grupo" id="firma">
+                        <p class="label">Firma</p>
+                        <!--POnemos un párrafo en medio del contenedor de la firma para que con JavaScript lo ponga el usuario
+                        de forma dinámica-->
+                        <div class="firma"><p></p></div>
+                    </div>
+                    <div class="grupo" id="ccv">
+                        <p class="label">CCV</p>
+                        <p class="ccv"></p>
+                    </div>
+                </div>
+                <!--Párrafo de la parte inferior de la tarjeta de crédito, donde va la leyenda y el link del proveedor de la tarjeta de crédito-->
+                <p class="leyenda">Esta tarjeta funciona en TODAS LAS REDES y a nivel mundial en las redes VISA. En caso de tener algún inconveniente
+                 con esta tarjeta, por favor, comunicarse con su banco más cercano.</p>
+                 <a href="#" class="link-banco">www.visa.com</a>
+            </div>
+
+        </section>
+
+        <!--Contenedor botón abrir formulario-->
+        <div class="contenedor-btn">
+            <button class="btn-abrir-formulario" id="btn-abrir-formulario">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+
+
+        <!--Formulario-->
+        <form action="" id="formulario-tarjeta" class="formulario-tarjeta">
+            <div class="grupo">
+                <label for="inputNombre">Nombre</label>
+                <input type="text" id="inputNombre" maxlength="19" autocomplete="off" required>
+            </div>
+            <div class="grupo">
+                <!--Contenedor para poder ubicar el titulo del n'umero tarjeta con el botón de generarlo aleatoriamente
+                de forma horizontal en la misma linea-->
+                <div class="seccion-generador-numero">
+                <label for="inputNumero" >Número Tarjeta</label> 
+                <button class="btn-aleatorio">Generar Aleatorio</button>
+                </div>
+                <input type="text" id="inputNumero" maxlength="19" autocomplete="off" readonly required>
+            </div>
+            <!--Creamos un contenedor para poder agrupar los elementos de manera horizontal-->
+            <!--Se crean dos clases de flexbox en los contenedores padres porque van a utilizar el mismo estilo
+            CSS-->
+            <div class="flexbox">
+                <!--Seccion para el grupo expira con una clase adicionl-->
+                <div class="grupo expira">
+                    <label for="selectMes">Expiración</label>
+                    <div class="flexbox">
+                        <!--Creamos un grupo para el select porque va a tener dos elementos, uno que va ser el select y el 
+                        otro que es el icono traido desde font awesome-->
+                        <div class="grupo-select">
+                            <select name="mes" id="selectMes" required>
+                                <!--Hacemos que las opciones del select esten desabilitadas, la primera opción va a ser
+                                la palabra mes, pero el usuario no va a poder seleccionarla, para ello se utilizó JavaScript
+                                para poder generarlos de manera dinamica para poder ahorrarnos codigo HTML-->
+                                <option disabled selected>Mes</option>
+                            </select>
+                            <!--Desde font awesome agregamos el icono del angulo hacia bajo-->
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                        <!--Grupo para el año-->
+                        <div class="grupo-select">
+                            <select name="year" id="selectYear" required>
+                                <!--Al igual que la seleccion de los meses, el año se va a poder generar las ocpiones de manera
+                                dinamica mediante codigo JavaScript-->
+                                <option disabled selected >Año</option>
+                            </select>
+                            <!--Desde font awesome agregamos el icono del angulo hacia bajo-->
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Seccion para el código de seguridad-->
+                <div class="grupo ccv">
+                    <label for="inputCCV">CCV</label>
+                    <input type="text" id="inputCCV" maxlength="3" required>
+                </div>
+            </div>
+
+            <!--Agregamos el botón ¨Enviar¨ para que el usuario pueda enviar los datos de la generación de la tarjeta de crédito-->
+            <button type="submit" class="btn-enviar" id="btnEnviar">Enviar</button>
+        </form>
+    </div>
+
+    <!--Enlace del codigo JavaScript de manera externa-->
+    <script src="js/main.js"></script>
+
+ <!--Contenedor del pie de página-->   
+ <div class="footer">
+    <p>Programación en Web I<br>
+    © Todos los derechos reservados<br>
+    Luis Mario Polanco Bolaños</p>
+</div>
+</body>
+</html>

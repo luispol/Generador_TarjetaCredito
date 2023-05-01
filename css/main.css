@@ -1,0 +1,423 @@
+/*Selector universal*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/*Bloque para darle estilos a todo el cuerpo de la página web*/
+body{
+    background-color:#ddeefc;
+    font-family: 'Lato', sans-serif;
+}
+
+/*Bloque de estilo para especificamente la barra de navegacion*/
+.seccion-menu{
+    background-color: black;
+    overflow: hidden;
+}
+
+/*Bloque de estilo para las etiquetas a que estarán en la barra de navegacion*/
+.seccion-menu a{
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+/*Bloque para dar efecto de otro color a las opciones del menu mientras el mouse pasa sobre ellas*/
+.seccion-menu a:hover{
+    background-color: #4390f0;
+}
+
+/*Bloque de estilos para darle color a la opción por defecto ¨Generador¨, para que este seleccionada*/
+.seccion-menu .predeterminado{
+    background-color: #4390f0;
+}
+
+/*Bloque de estilo para poder darle estilo correspondiente al pie de pagina*/
+.footer{
+    background-color: black;
+    color: white;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+    position: absolute;
+}
+
+/*Está clase es para las etiquetas p que están dentro de la clase footer, las cuales generará un espacio entre su contenedor padre,
+que en esté caso es una etiqueta div.*/
+.footer p{
+    padding: 14px 16px;
+}
+
+/*Para ponerle estilo a los encabezados principales de la pagina*/
+.titulos{
+    text-align: center;
+}
+
+/*Bloque para darle estilo al contenedor padre*/
+.contenedor{
+    width: 100%;
+    display: flex;/*Para colocarlos horizontalmente los elementos*/
+    padding: 40px 20px;
+    margin: auto;
+    align-items: center;/*Esta propiedad nos ayuad para poder invertir el alineado y colocarlos de manera central y hozizontal*/
+}
+
+/*----Estilos Generales de las tarjetas----*/
+/*Bloque para darle estilo a la tarjeta de crédito, estos estilos se aplicarán tanto para para la parte delantera
+como en la parte trasera*/
+.tarjeta {
+    width: 100%;
+    max-width: 550px;
+    margin-left: 30px;
+    position: relative; /*Esta propiedad sirve para poder lograr el efecto 3D de la tarjeta, para que luego la parte trasera se ponga enfrente*/
+    color: #fff;
+    transition: .3s ease all;/*Esta propiedad nos funciona para poder crear una animacion suave*/
+    transform: rotatey(0deg);/*Para poder generar una ratación de 0 grados por defecto para que no se mueva y en el eje ¨y¨*/
+    transform-style: preserve-3d;/*Propiedad que nos va a permitir darle el efecto 3d a la tarjeta al momento de girarla*/
+    cursor: pointer;
+    z-index: 2;
+}
+
+/*Bloque de estilo para proporcionar un efecto de desabilitada la tarjeta, antes de su generación*/
+.sombrio{
+    filter: opacity(0.5);
+    pointer-events: none;
+}
+
+/*Bloque para darle efecto de giro a la tarjeta cuando el usuario la active o le de click, la clase ¨active¨ 
+se va a poner con el código de JavaScript*/
+.tarjeta.active{
+    transform: rotateY(180deg);/*Propiedad que nos va a permitir personalizar los grados de la tarjeta al momento que realize el giro*/
+}
+
+
+/*Accedemos a los dos div que estan dentro de la clase tarjeta, que seria la parte delantera y trasera de la tarjeta*/
+.tarjeta > div{
+    padding: 30px;
+    border-radius: 15px;
+    min-height: 315px;
+    display: flex;/*Esto es para poder manejar los documentos dentro de la tarjeta*/
+    flex-direction: column;
+    justify-content: space-between;/*Esto hace que cada elemento quede separado*/
+    box-shadow: 0 10px 10px 0 rgba(90,116,148,0.3);
+}
+
+/*----Parte delantera de la tarjeta----*/
+/*Bloque de estilos para indicar el fondo de la tarjeta parte delantera*/
+.tarjeta .delantera{
+    width: 100%;
+    background: url(../img/fondoTarjeta.jpg);
+    background-size: cover;
+}
+
+/*Bloque para ponerle estilo al contenedor del logotipo de la tarjeta*/
+.delantera .logo-marca{
+    text-align: right;
+    min-height: 50px;
+}
+
+/*Bloque de codigo donde le ponermos estilos al logotipo de la imagen*/
+.delantera .logo-marca img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 80px;
+}
+
+/*Bloque de codigo para ponerle estilos al chip*/
+.delantera .chip{
+    width: 100%;
+    max-width: 50px;
+    margin-bottom: 20px;
+}
+
+/*Bloque para ponerle estilo a los encabezados de la tarjeta*/
+.delantera .grupo .label{
+    font-size: 16px;
+    color: #7d8994;
+    margin-bottom: 5px;
+}
+
+/*Bloque compuesto de las clases que están en la aprte delantera de la tajerta para definir su diseño*/
+.delantera .grupo .numero,
+.delantera .grupo .nombre,
+.delantera .grupo .expiracion{
+    color: #fff;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+/*Bloque oara poder poner de fomra horizontar la parte inferior de la tarjeta de crédito con su respectivo espacio*/
+.delantera .flexbox{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/*----Parte trasera de la tarjeta----*/
+/*Boque de estilos para poder darle estilo a la parte trasera de la tarjeta*/
+.trasera {
+    background: url(../img/fondoTarjeta.jpg);
+    background-size: cover;
+    position: absolute;
+    top: 0; /*Lo ponemos en la parte de arriba del contenedor padre*/
+    transform: rotateY(180deg); /*Especificamos que queremos rotar el elemento en el eje de la y 180º*/
+    backface-visibility: hidden;/*Propiedad para poder ocultar por defecto la aprte trasera*/
+}
+
+/*Bloque de estilo para crear la barra mágnetica de la tarjeta de crédito*/
+.trasera .barra-magnetica{
+    height: 40px;
+    background: #000;
+    width: 100%;
+    position: absolute;
+    top: 30px;
+    left: 0;
+}
+
+/*Bloque de estiloss para los datos de la parte trasera de la tarjeta*/
+.trasera .datos{
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*Bloque de estilo para los párrafos de los datos, para poder generarles un márgen*/
+.trasera .datos p{
+    margin-bottom: 5px;
+}
+
+/*Bloque de estilo para darle un espacio al contenido de la firma*/
+.trasera .datos #firma{
+    width: 70%;
+}
+
+/*Agregamos el rectángulo donde se va almacenar la firma del usuario*/
+.trasera .datos #firma .firma{
+    height: 40px;
+    background: repeating-linear-gradient(skyblue 0, skyblue 5px, white 5px, white 10px);
+}
+
+/*Accedemos a darle estilos al contenido que va almacenar el rectángulo de la firma*/
+.trasera .datos #firma .firma p{
+    line-height: 40px;
+    color: #000;
+    font-family: 'Liu Jian Mao Cao', cursive;
+    font-size: 30px;
+    padding: 0 10px;
+    text-transform: capitalize;/*Propiedad que hace que la primer letra del texto se ponga en mayúsculo, dejando las demnas letras del texto en minúsculas*/
+}
+
+/*Se empieza a trabajar para darle estilo al recuadro del ccv*/
+.trasera .datos #ccv{
+    width: 20%;
+}
+
+/*Bloque de estilo al cuadro del ccv*/
+.trasera .datos #ccv .ccv{
+    background: #ddd;
+    height: 40px;
+    color: #000;
+    padding: 10px;
+    text-align: center;
+}
+
+/*Le damos estilos a la leyenda de la parte trasera de la tarjeta*/
+.trasera .leyenda{
+    font-size: 14px;
+    line-height: 24px;
+}
+
+/*Bloque de estilos para el link de contácto del proveedor de la tarjeta*/
+.trasera .link-banco{
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+}
+
+/*----Contenedor del boton-----*/
+.contenedor-btn .btn-abrir-formulario{
+    width: 40px;
+    height: 40px;
+    line-height: 20px;
+    background: #2364d2;
+    color: #fff;
+    position: relative;
+    left: -20px;
+    z-index: 3;
+    border-radius: 100%;
+    box-shadow: -5px 4px 8px rgba(24, 56, 186, 0.4);
+    padding: 5px;
+    transition: all .2s ease;
+    border: none;/*Quitamos el borde por defecto del navegador*/
+    cursor: pointer;
+}
+
+/*Utilizamos este bloque de estilo para darle un efecto de opacidad al botón, cuando el mouse este sobre el*/
+.contenedor-btn .btn-abrir-formulario:hover{
+    background: #1850b1;
+}
+
+/*Bloque de estilos para cuando el botón tenga la clase active, el botón de efecto de rotación para desglosar
+el formulario de su lado izquierdo*/
+.contenedor-btn .btn-abrir-formulario.active{
+    transform: rotate(45deg);
+}
+
+/*----Formulario de tarjeta----*/
+.formulario-tarjeta{
+    background: #fff;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px 30px 30px 30px;
+    border-radius: 10px;
+    position: relative;
+    left: -150px;
+    z-index: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: left .3s ease-in-out; /*Creamos una transición para la animación del formulario y le decimos que se mueva hacia la izquierda, con el estilo especificado*/
+}
+
+/*Bloque de estilo para cuando el formulario ya tenga el clase active*/
+.formulario-tarjeta.active{
+    clip-path: polygon(0 0, 100% 0 , 100% 100%, 0 100%);
+    left: 0;
+}
+
+/*Bloque de estilos a todos los label que están dentro de la clase .formulario-tarjeta*/
+.formulario-tarjeta label{
+    display: block;
+    color: #7d8994;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/*Bloque de estilo compuesto donde afectaremos a los inputs, select y al botón de enviar el formulario*/
+.formulario-tarjeta input,
+.formulario-tarjeta select,
+.btn-enviar{
+    border: 2px solid #ced6e0;
+    font-size: 18px;
+    height: 50px;
+    width: 100%;
+    padding: 5px 12px;
+    transition: .3s ease all;
+    border-radius: 5px;
+}
+
+/*Bloque de estilo compuesto para los input y los select para cuando el usuario pase el mouse en estos elementos*/
+.formulario-tarjeta input:hover,
+.formulario-tarjeta select:hover{
+    border: 2px solid #93bded;
+
+}
+
+/*Bloque de estilo compuesto para cuando el usuario se concentre propieamente en esos elementos*/
+.formulario-tarjeta input:focus,
+.formulario-tarjeta select:focus{
+    outline: rgb(4,4,4);
+    box-shadow: 1px 7px 10px -5px rgba(90, 116, 148,0.3);
+}
+
+/*Bloque de estilo para darle espaciado a los input y que el contenido que digite el usuario se tranforme a mayúsculas*/
+.formulario-tarjeta input{
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/*Bloque de estilo para poder colocar los elementos de manera horizontal y darle espacio entre ellos*/
+.formulario-tarjeta .flexbox{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*Bloque de estilos para que el contenedor de los datos de vencimiento los cubra todo*/
+.formulario-tarjeta .expira{
+    width: 100%;
+}
+
+/*Bloque para darle estilo al bloque del codigo de seguridad*/
+.formulario-tarjeta .ccv{
+    min-width: 100px;
+}
+
+/*Bloque de estilos para los grupos de select del formulario, para decirles que tomen el ancho que puedan del 100%
+y que se repartan el tamaño*/
+.formulario-tarjeta .grupo-select{
+    width: 100%;
+    margin-right: 15px;
+    position: relative;/*Le ponemos relative para que el icono lo ubiquemos con un posicionamiento absoluto*/
+}
+
+/*Bloque para acceder al select como tal para quitarle la apariencia*/
+.formulario-tarjeta select{
+    -webkit-appearance: none;
+}
+
+/*Bloque de estilo para ubicar el icono a los select*/
+.formulario-tarjeta .grupo-select i {
+    position: absolute;
+    color: #ced6e0;
+    top: 18px;
+    right: 15px;
+    transition: .3s ease all;
+}
+
+/*Bloque de estilo para que el icono cuando el usuario pase el mouse también cambie de color*/
+.formulario-tarjeta .grupo-select:hover i{
+    color: #93bfed;
+}
+
+/*Bloque de estilo para darle estilo al botón de enviar*/
+.formulario-tarjeta .btn-enviar{
+    border: none;
+    padding: 10px;
+    font-size: 10px;
+    font-size: 22px;
+    color: #fff;
+    background: #2364d2;
+    box-shadow: 2px 2px 10px 0px rgba(0, 85, 212, 0.4);
+    cursor: pointer;
+}
+
+/*Bloque de estilo para cuando el mouse pase por el elemento*/
+.formulario-tarjeta .btn-enviar:hover{
+    background: #1850b1;
+}
+
+/*Bloque de estilo para poder porner de manera horizontal los elementos que conforman el encabezado
+de la caja de texto de la generación del numero aleatorio*/
+.formulario-tarjeta .seccion-generador-numero{
+    display: flex;
+    width: 100%;
+}
+
+/*Bloque de estilo para el botón de generar el número aleatorio*/
+.formulario-tarjeta .btn-aleatorio{
+    border: none;
+    color: #fff;
+    background: #2364d2;
+    box-shadow: 2px 2px 10px 0px rgba(0, 85, 212, 0.4);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/*Bloque de estilo para poder posicionar el botón de generar el número aleatorio al margen derecho de la caja de texto
+del número aleatorio*/
+.formulario-tarjeta div.seccion-generador-numero button{
+    position: absolute;
+    right: 0;
+    margin-right: 30px;
+}
+
+/*Bloque de estilo para que el usuario cuando pase el mouse pase flotanto sobre el botón le de
+una tonalidad diferente al botón*/
+.formulario-tarjeta .btn-aleatorio:hover{
+    background: #1850b1;
+}
+
